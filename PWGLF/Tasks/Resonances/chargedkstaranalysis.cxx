@@ -63,11 +63,11 @@ struct chargedkstaranalysis {
   // Connect to ccdb
   Service<ccdb::BasicCCDBManager> ccdb;
   Configurable<int64_t> nolaterthan{
-      "ccdb-no-later-than",
-      std::chrono::duration_cast<std::chrono::milliseconds>(
-          std::chrono::system_clock::now().time_since_epoch())
-          .count(),
-      "latest acceptable timestamp of creation for the object"};
+    "ccdb-no-later-than",
+    std::chrono::duration_cast<std::chrono::milliseconds>(
+      std::chrono::system_clock::now().time_since_epoch())
+      .count(),
+    "latest acceptable timestamp of creation for the object"};
   Configurable<std::string> url{"ccdb-url", "http://ccdb-test.cern.ch:8080",
                                 "url of the ccdb repository"};
 
@@ -75,9 +75,9 @@ struct chargedkstaranalysis {
 
   // For charged Kstarpp analysis use Resonance Initalizer and THnSparse
   ConfigurableAxis binsCent{
-      "binsCent",
-      {VARIABLE_WIDTH, 0., 1., 5., 10., 30., 50., 70., 100., 110.},
-      "Binning of the centrality axis"};
+    "binsCent",
+    {VARIABLE_WIDTH, 0., 1., 5., 10., 30., 50., 70., 100., 110.},
+    "Binning of the centrality axis"};
   ConfigurableAxis binsPt{"binsPt",
                           {VARIABLE_WIDTH,
                            0.0,
@@ -313,14 +313,18 @@ struct chargedkstaranalysis {
                             "Binning of the pT axis"};
 
   HistogramRegistry histos1{
-      "histos1", {}, OutputObjHandlingPolicy::AnalysisObject, true, true};
+    "histos1",
+    {},
+    OutputObjHandlingPolicy::AnalysisObject,
+    true,
+    true};
 
   // Pre-selection cuts
   Configurable<double> cMinPtcut{"cMinPtcut", 0.15, "Track minimum pt cut"};
   /// PID Selections
   Configurable<double> nsigmaCutCombinedPion{
-      "nsigmaCutCombinedPion", -999,
-      "Combined nSigma cut for Pion"}; // Combined
+    "nsigmaCutCombinedPion", -999,
+    "Combined nSigma cut for Pion"}; // Combined
 
   // DCAr to PV
   Configurable<double> cMaxDCArToPVcut{"cMaxDCArToPVcut", 0.5,
@@ -330,21 +334,21 @@ struct chargedkstaranalysis {
                                        "Track DCAz cut to PV Maximum"};
   // Track selections
   Configurable<bool> cfgPrimaryTrack{
-      "cfgPrimaryTrack", true,
-      "Primary track selection"}; // kGoldenChi2 | kDCAxy | kDCAz
+    "cfgPrimaryTrack", true,
+    "Primary track selection"}; // kGoldenChi2 | kDCAxy | kDCAz
   Configurable<bool> cfgGlobalWoDCATrack{
-      "cfgGlobalWoDCATrack", true,
-      "Global track selection without DCA"}; // kQualityTracks (kTrackType |
-                                             // kTPCNCls | kTPCCrossedRows |
-                                             // kTPCCrossedRowsOverNCls |
-                                             // kTPCChi2NDF | kTPCRefit |
-                                             // kITSNCls | kITSChi2NDF |
-                                             // kITSRefit | kITSHits) |
-                                             // kInAcceptanceTracks (kPtRange |
-                                             // kEtaRange)
+    "cfgGlobalWoDCATrack", true,
+    "Global track selection without DCA"}; // kQualityTracks (kTrackType |
+                                           // kTPCNCls | kTPCCrossedRows |
+                                           // kTPCCrossedRowsOverNCls |
+                                           // kTPCChi2NDF | kTPCRefit |
+                                           // kITSNCls | kITSChi2NDF |
+                                           // kITSRefit | kITSHits) |
+                                           // kInAcceptanceTracks (kPtRange |
+                                           // kEtaRange)
   Configurable<bool> cfgPVContributor{
-      "cfgPVContributor", true,
-      "PV contributor track selection"}; // PV Contributor
+    "cfgPVContributor", true,
+    "PV contributor track selection"}; // PV Contributor
   // V0 selections
   Configurable<double> cV0MinCosPA{"cV0MinCosPA", 0.97,
                                    "V0 minimum pointing angle cosine"};
@@ -352,7 +356,7 @@ struct chargedkstaranalysis {
                                       "V0 daughter DCA Maximum"};
   // Competing V0 rejection
   Configurable<double> cV0MassWindow{
-      "cV0MassWindow", 0.0043, "Mass window for competing Lambda0 rejection"};
+    "cV0MassWindow", 0.0043, "Mass window for competing Lambda0 rejection"};
   Configurable<float> cInvMassStart{"cInvMassStart", 0.6,
                                     "Invariant mass start"};
   Configurable<float> cInvMassEnd{"cInvMassEnd", 1.5, "Invariant mass end"};
@@ -365,9 +369,9 @@ struct chargedkstaranalysis {
                                0.f, 2.f, 4.f, 6.f, 8.f, 10.f},
                               "Mixing bins - z-vertex"};
   ConfigurableAxis CfgMultBins{
-      "CfgMultBins",
-      {VARIABLE_WIDTH, 0., 1., 5., 10., 30., 50., 70., 100., 110.},
-      "Mixing bins - multiplicity"};
+    "CfgMultBins",
+    {VARIABLE_WIDTH, 0., 1., 5., 10., 30., 50., 70., 100., 110.},
+    "Mixing bins - multiplicity"};
   Configurable<int> cTpcNsigmaPionBinsQA{"cTpcNsigmaPionBinsQA", 140,
                                          "tpcNSigmaPi binning"};
 
@@ -385,7 +389,8 @@ struct chargedkstaranalysis {
                                         "Value of the Combined Nsigma cut"};
   Configurable<int> cfgNoMixedEvents{"cfgNoMixedEvents", 5,
                                      "Number of mixed events per event"};
-  void init(InitContext const &) {
+  void init(InitContext const&)
+  {
     AxisSpec dcaxyAxisQA = {cDCABinsQA, 0.0, 3.0, "DCA_{#it{xy}} (cm)"};
     AxisSpec dcazAxisQA = {cDCABinsQA, 0.0, 3.0, "DCA_{#it{xy}} (cm)"};
     AxisSpec ptAxisQA = {binsPtQA, "#it{p}_{T} (GeV/#it{c})"};
@@ -398,7 +403,7 @@ struct chargedkstaranalysis {
                             "Invariant Mass (GeV/#it{c}^2)"};
     AxisSpec etaAxis = {Etabins, "#eta"};
     AxisSpec goodTrackCountAxis = {
-        3, 0., 3., "Passed track = 1, Passed V0 = 2, Passed track and V0 = 3"};
+      3, 0., 3., "Passed track = 1, Passed V0 = 2, Passed track and V0 = 3"};
     // register histograms
     histos1.add("hVertexZ", "hVertexZ", HistType::kTH1F, {{nBins, -15., 15.}});
     histos1.add("hEta", "Eta distribution", kTH1F, {{200, -1.0f, 1.0f}});
@@ -467,8 +472,9 @@ struct chargedkstaranalysis {
   // Fill histograms (main function)
   template <bool IsMC, bool IsMix, typename CollisionType, typename TracksType,
             typename V0sType>
-  void fillHistograms(const CollisionType &collision, const TracksType &dTracks,
-                      const V0sType &dV0s) {
+  void fillHistograms(const CollisionType& collision, const TracksType& dTracks,
+                      const V0sType& dV0s)
+  {
     // auto multiplicity = collision.cent();
     auto multiplicity = collision.cent();
     histos1.fill(HIST("QAbefore/collMult"), multiplicity);
@@ -519,7 +525,7 @@ struct chargedkstaranalysis {
                      track.tpcNSigmaPi());
       }
 
-      for (auto &v0 : dV0s) {
+      for (auto& v0 : dV0s) {
 
         // Full index policy is needed to consider all possible combinations
         if (v0.indices()[0] == trackId || v0.indices()[1] == trackId)
@@ -556,7 +562,9 @@ struct chargedkstaranalysis {
     }
   }
 
-  template <typename T> bool selectionPIDpp(const T &candidate) {
+  template <typename T>
+  bool selectionPIDpp(const T& candidate)
+  {
     bool tpcPIDPassed{false}, tofPIDPassed{false};
     if (std::abs(candidate.tpcNSigmaPi()) < nsigmaCutTPC) {
       tpcPIDPassed = true;
@@ -567,7 +575,7 @@ struct chargedkstaranalysis {
       }
       if ((nsigmaCutCombinedPion > 0) &&
           (candidate.tpcNSigmaPi() * candidate.tpcNSigmaPi() +
-               candidate.tofNSigmaPi() * candidate.tofNSigmaPi() <
+             candidate.tofNSigmaPi() * candidate.tofNSigmaPi() <
            nsigmaCutCombinedPion * nsigmaCutCombinedPion)) {
         tofPIDPassed = true;
       }
@@ -580,7 +588,9 @@ struct chargedkstaranalysis {
     return false;
   }
 
-  template <typename TrackType> bool trackCutpp(const TrackType track) {
+  template <typename TrackType>
+  bool trackCutpp(const TrackType track)
+  {
     // basic track cuts
     if (std::abs(track.pt()) < cMinPtcut)
       return false;
@@ -599,7 +609,9 @@ struct chargedkstaranalysis {
 
     return true;
   }
-  template <typename V0Type> bool V0Cut(const V0Type v0) {
+  template <typename V0Type>
+  bool V0Cut(const V0Type v0)
+  {
     // V0 track cuts
     if (std::abs(v0.eta()) > ConfDaughEta)
       return false;
@@ -625,9 +637,10 @@ struct chargedkstaranalysis {
     pair{binningOnPositions, cfgNoMixedEvents, -1, &cache};
   */
 
-  void processSEnew(aod::ResoCollision &collision,
-                    aod::ResoTracks const &resotracks,
-                    aod::ResoV0s const &resov0s) {
+  void processSEnew(aod::ResoCollision& collision,
+                    aod::ResoTracks const& resotracks,
+                    aod::ResoV0s const& resov0s)
+  {
     // Fill the event counter
     histos1.fill(HIST("hVertexZ"), collision.posZ());
     fillHistograms<false, false>(collision, resotracks,
@@ -637,17 +650,18 @@ struct chargedkstaranalysis {
                  true);
 
   using BinningTypeVtxZT0M =
-      ColumnBinningPolicy<aod::collision::PosZ, aod::resocollision::Cent>;
-  void processMEnew(aod::ResoCollisions &collisions,
-                    aod::ResoTracks const &resotracks,
-                    aod::ResoV0s const &resov0s) {
+    ColumnBinningPolicy<aod::collision::PosZ, aod::resocollision::Cent>;
+  void processMEnew(aod::ResoCollisions& collisions,
+                    aod::ResoTracks const& resotracks,
+                    aod::ResoV0s const& resov0s)
+  {
     auto tracksV0sTuple = std::make_tuple(resotracks, resov0s);
     auto V0sTuple = std::make_tuple(resov0s);
     BinningTypeVtxZT0M colBinning{{CfgVtxBins, CfgMultBins}, true};
     Pair<aod::ResoCollisions, aod::ResoTracks, aod::ResoV0s, BinningTypeVtxZT0M>
-        pairs{colBinning,     nEvtMixing, -1, collisions,
-              tracksV0sTuple, &cache}; // -1 is the number of the bin to skip
-    for (auto &[c1, restrk1, c2, resov0s2] : pairs) {
+      pairs{colBinning, nEvtMixing, -1, collisions,
+            tracksV0sTuple, &cache}; // -1 is the number of the bin to skip
+    for (auto& [c1, restrk1, c2, resov0s2] : pairs) {
       fillHistograms<false, true>(c1, restrk1, resov0s2);
     }
   }
@@ -655,6 +669,7 @@ struct chargedkstaranalysis {
                  true);
 };
 
-WorkflowSpec defineDataProcessing(ConfigContext const &cfgc) {
+WorkflowSpec defineDataProcessing(ConfigContext const& cfgc)
+{
   return WorkflowSpec{adaptAnalysisTask<chargedkstaranalysis>(cfgc)};
 }
