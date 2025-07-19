@@ -931,7 +931,7 @@ struct chargedkstaranalysis {
 
     //    histos.fill(HIST("QAMC/hEvent"), 1.0);
 
-        fillHistograms<true, false>(collision, tracks, v0s);
+    fillHistograms<true, false>(collision, tracks, v0s);
   }
   PROCESS_SWITCH(chargedkstaranalysis, processMC, "Process Event for MC", false);
 };
