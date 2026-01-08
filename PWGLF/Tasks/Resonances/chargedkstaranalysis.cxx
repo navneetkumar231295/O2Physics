@@ -745,7 +745,7 @@ struct Chargedkstaranalysis {
     v1CM = ROOT::Math::XYZVectorF(boost(daughter1).Vect()).Unit();
     // ROOT::Math::XYZVectorF v2_CM{(boost(daughter1).Vect()).Unit()};
     // using positive sign convention for the first track
-    // ROOT::Math::XYZVectorF v_CM = (t1.sign() > 0 ? v1CM : v2_CM); // here selected decay daughter momentum is intested. here you can choose one decay daughter 
+    // ROOT::Math::XYZVectorF v_CM = (t1.sign() > 0 ? v1CM : v2_CM); // here selected decay daughter momentum is intested. here you can choose one decay daughter
     // Helicity Frame
     zaxisHE = ROOT::Math::XYZVectorF(mother.Vect()).Unit();
     yaxisHE = ROOT::Math::XYZVectorF(beam1CM.Cross(beam2CM)).Unit();
